@@ -8,7 +8,7 @@ fun Shop.getCustomersWhoOrderedProduct(product: Product): Set<Customer> {
 fun Customer.getMostExpensiveDeliveredProduct(): Product? {
     // Return the most expensive product among all delivered products
     // (use the Order.isDelivered flag)
-    return this.orderedProducts.
+//    return this.orderedProducts.
 }
 
 fun Shop.getNumberOfTimesProductWasOrdered(product: Product): Int {
