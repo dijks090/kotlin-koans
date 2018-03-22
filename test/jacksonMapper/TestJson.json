@@ -1,4 +1,9 @@
-{
+[{
   "name": "Steve",
   "age": "44"
 }
+,
+{
+"name": "Blanka",
+"age": "43"
+}]
