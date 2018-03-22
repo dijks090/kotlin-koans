@@ -8,6 +8,7 @@ buildscript {
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
+
 }
 
 apply plugin: 'kotlin'
@@ -19,10 +20,15 @@ sourceSets {
 
 repositories {
     mavenCentral()
+    maven { url "https://dl.bintray.com/kotlin/exposed" }
+
 }
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     compile 'com.google.guava:guava:16.0'
     testCompile 'junit:junit:4.12'
+    compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.+"
 }
+
+
