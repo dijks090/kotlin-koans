@@ -14,7 +14,7 @@ class JsonParserTest {
 
         val parser = JsonParser()
         val result = parser.parseJson(json)
-        Assert.assertEquals("Steve", result.name)
+        Assert.assertEquals("name", result.name)
     }
 
 }

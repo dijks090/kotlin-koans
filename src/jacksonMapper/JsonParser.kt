@@ -1,29 +1,34 @@
 package jacksonMapper
 
+import com.fasterxml.jackson.core.JsonParser
+import com.fasterxml.jackson.databind.DeserializationContext
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.deser.std.StdDeserializer
 import com.fasterxml.jackson.databind.module.SimpleModule
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.fasterxml.jackson.module.kotlin.readValue
+import com.fasterxml.jackson.databind.JsonNode
+
+
 
 
 
 class JsonParser {
 
-
-//    ObjectMapper mapper = new ObjectMapper();
-//    SimpleModule module = new SimpleModule();
-//    module.addDeserializer(Item.class, new ItemDeserializer());
-//    mapper.registerModule(module);
-//
-//    Item readValue = mapper.readValue(json, Item.class);
-
-
-
-    fun parseJson(json: String) : MyStateObject {
+    fun parseJson(json: String) : Item {
         val mapper: ObjectMapper = ObjectMapper().registerModule(KotlinModule())
-//        val module: SimpleModule = SimpleModule()
-//        module.addDeserializer()
-        return mapper.readValue<MyStateObject>(json)
+        val module = SimpleModule()
+        module.addDeserializer(Item::class.java, ItemDeserializer())
+        mapper.registerModule(module)
+        return mapper.readValue(json)
     }
 }
-data class MyStateObject(val name: String, val age: Int)
+
+class ItemDeserializer: StdDeserializer<Item>(Item::class.java) {
+    override fun deserialize(p: JsonParser?, ctxt: DeserializationContext?): Item {
+        val node = p?.nextFieldName()
+        return Item(name = node!!)
+    }
+}
+
+data class Item(val name: String)
