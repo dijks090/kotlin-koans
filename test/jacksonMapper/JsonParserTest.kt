@@ -1,7 +1,6 @@
 package jacksonMapper
 
 import junit.framework.Assert.assertEquals
-import org.junit.Assert
 import org.junit.Test
 import java.io.File
 
@@ -16,14 +15,14 @@ class JsonParserTest {
         val parser = JsonParser()
         val result = parser.parseJson(json)
         val eersteElement = result.elementAt(0)
-        assertEquals("Sander", eersteElement.name)
-        assertEquals(44, eersteElement.age)
-        assertEquals("genest ei", eersteElement.ei)
+        assertEquals("ipde-input-queue", eersteElement.name)
+//        assertEquals(19, eersteElement.priorities)
+//        assertEquals("genest ei", eersteElement.ei)
 
         val tweedeElement = result.elementAt(1)
-        assertEquals("Blanka", tweedeElement.name)
-        assertEquals(43, tweedeElement.age)
-        assertEquals("genest eitje", tweedeElement.ei)
+        assertEquals("batch-input-queue", tweedeElement.name)
+//        assertEquals(20, tweedeElement.priorities)
+//        assertEquals("genest eitje", tweedeElement.ei)
     }
 
 }

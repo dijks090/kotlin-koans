@@ -1,15 +1,40 @@
-[{
-  "name": "Sander",
-  "age": "44",
-  "nest" : {
-    "ei" : "genest ei"
+[
+  {
+    "queue-name": "ipde-input-queue",
+    "queue-lengths": {
+      "priorities": {
+        "0": "2",
+        "1": "4",
+        "2": "6",
+        "3": "8",
+        "4": "10",
+        "5": "12",
+        "6": "3",
+        "7": "3",
+        "8": "3"
+      }
+    }
+  },
+  {
+    "queue-name": "batch-input-queue",
+    "queue-lengths": {
+      "priorities": {
+        "0": "12",
+        "1": "42",
+        "2": "63",
+        "3": "58",
+        "4": "106",
+        "5": "127",
+        "6": "63",
+        "7": "34",
+        "8": "453"
+      }
+    }
+  },
+  {
+    "queue-name": "batch-output-queue",
+    "queue-lengths": {
+      "timeout": "30"
+    }
   }
-}
-,
-{
-"name": "Blanka",
-"age": "43",
-  "nest" : {
-    "ei" : "genest eitje"
-  }
-}]
+]

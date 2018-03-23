@@ -11,28 +11,26 @@ import com.fasterxml.jackson.module.kotlin.readValue
 import com.fasterxml.jackson.databind.JsonNode
 
 
-
-
 class JsonParser {
 
-    fun parseJson(json: String) : List<Item> {
+    fun parseJson(json: String) : List<Queue> {
         val mapper: ObjectMapper = ObjectMapper().registerModule(KotlinModule())
         val module = SimpleModule()
-        module.addDeserializer(Item::class.java, ItemDeserializer())
+        module.addDeserializer(Queue::class.java, ItemDeserializer())
         mapper.registerModule(module)
-        return mapper.readValue<List<Item>>(json)
+        return mapper.readValue(json)
     }
 }
 
-class ItemDeserializer: StdDeserializer<Item>(Item::class.java) {
-    override fun deserialize(parser: JsonParser, ctxt: DeserializationContext?): Item {
+class ItemDeserializer: StdDeserializer<Queue>(Queue::class.java) {
+    override fun deserialize(parser: JsonParser, ctxt: DeserializationContext?): Queue {
         while (parser.nextToken() != JsonToken.END_OBJECT) {
             val node: JsonNode = parser.codec.readTree(parser)
-            return Item(node.get("name").textValue(), node.get("age").asInt(), node.get("nest").get("ei").textValue())
-            println(node)
+            return Queue(node.get("queue-name").textValue()
+                    , node.get("queue-lengths").get("priorities")?.toString())
         }
-        return Item()
+        return Queue()
     }
 }
 
-data class Item(val name: String = "", val age: Int = 0, val ei: String = "")
+data class Queue(val name: String = "", val priorities: String? = "")
