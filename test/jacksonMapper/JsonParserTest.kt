@@ -14,15 +14,13 @@ class JsonParserTest {
 
         val parser = JsonParser()
         val result = parser.parseJson(json)
-        val eersteElement = result.elementAt(0)
-        assertEquals("ipde-input-queue", eersteElement.name)
-//        assertEquals(19, eersteElement.priorities)
-//        assertEquals("genest ei", eersteElement.ei)
+        val eersteQueue = result.elementAt(0)
+        assertEquals("ipde-input-queue", eersteQueue.name)
+        assertEquals(listOf(2, 4, 6, 8, 10, 12, 3, 3, 3), eersteQueue.priorities)
 
-        val tweedeElement = result.elementAt(1)
-        assertEquals("batch-input-queue", tweedeElement.name)
-//        assertEquals(20, tweedeElement.priorities)
-//        assertEquals("genest eitje", tweedeElement.ei)
+        val tweedeQueue = result.elementAt(1)
+        assertEquals("batch-input-queue", tweedeQueue.name)
+        assertEquals(listOf(12, 42, 63, 58, 106, 127, 63, 34, 453), tweedeQueue.priorities)
     }
 
 }

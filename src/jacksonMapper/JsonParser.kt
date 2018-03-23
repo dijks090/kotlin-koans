@@ -26,11 +26,15 @@ class ItemDeserializer: StdDeserializer<Queue>(Queue::class.java) {
     override fun deserialize(parser: JsonParser, ctxt: DeserializationContext?): Queue {
         while (parser.nextToken() != JsonToken.END_OBJECT) {
             val node: JsonNode = parser.codec.readTree(parser)
-            return Queue(node.get("queue-name").textValue()
-                    , node.get("queue-lengths").get("priorities")?.toString())
+            val name = node.get("queue-name").textValue()
+            val prioNode = node.get("queue-lengths").get("priorities")
+            val prios  = mutableListOf<Int>()
+            prioNode?.elements()?.forEach { prios.add( it.asInt()) }
+
+            return Queue(name, prios)
         }
         return Queue()
     }
 }
 
-data class Queue(val name: String = "", val priorities: String? = "")
+data class Queue(val name: String = "", val priorities: MutableList<Int>? = mutableListOf() )
