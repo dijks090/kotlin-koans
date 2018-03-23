@@ -8,6 +8,9 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer
 import com.fasterxml.jackson.databind.module.SimpleModule
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.fasterxml.jackson.module.kotlin.readValue
+import com.fasterxml.jackson.databind.JsonNode
+
+
 
 
 class JsonParser {
@@ -21,18 +24,15 @@ class JsonParser {
     }
 }
 
-//https://www.programcreek.com/java-api-examples/?class=com.fasterxml.jackson.core.JsonParser&method=readValueAs
 class ItemDeserializer: StdDeserializer<Item>(Item::class.java) {
     override fun deserialize(parser: JsonParser, ctxt: DeserializationContext?): Item {
         while (parser.nextToken() != JsonToken.END_OBJECT) {
-//            println(parser.getCurrentName())
-            println(parser.valueAsString)
-//            println(parser.currentToken)
+            val node: JsonNode = parser.codec.readTree(parser)
+            return Item(node.get("name").textValue(), node.get("age").asInt(), node.get("nest").get("ei").textValue())
+            println(node)
         }
-
-//        return parser.readValueAs(Item::class.java)
-        return Item("name")
+        return Item()
     }
 }
 
-data class Item(val name: String, val age: Int = 0)
+data class Item(val name: String = "", val age: Int = 0, val ei: String = "")

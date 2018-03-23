@@ -1,9 +1,15 @@
 [{
-  "name": "Steve",
-  "age": "44"
+  "name": "Sander",
+  "age": "44",
+  "nest" : {
+    "ei" : "genest ei"
+  }
 }
 ,
 {
 "name": "Blanka",
-"age": "43"
+"age": "43",
+  "nest" : {
+    "ei" : "genest eitje"
+  }
 }]
