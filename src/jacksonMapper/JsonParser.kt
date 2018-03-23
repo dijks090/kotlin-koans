@@ -28,7 +28,7 @@ class ItemDeserializer: StdDeserializer<Queue>(Queue::class.java) {
             val node: JsonNode = parser.codec.readTree(parser)
             val prios  = mutableListOf<Int>()
             node.get("queue-lengths").get("priorities")?.elements()?.forEach { prios.add( it.asInt()) }
-            return Queue(node.get("queue-name").textValue(), prios)
+            return Queue(node.get("queue-name").textValue(), prios.asReversed())
         }
         return Queue()
     }
