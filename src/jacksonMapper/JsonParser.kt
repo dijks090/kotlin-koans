@@ -26,12 +26,9 @@ class ItemDeserializer: StdDeserializer<Queue>(Queue::class.java) {
     override fun deserialize(parser: JsonParser, ctxt: DeserializationContext?): Queue {
         while (parser.nextToken() != JsonToken.END_OBJECT) {
             val node: JsonNode = parser.codec.readTree(parser)
-            val name = node.get("queue-name").textValue()
-            val prioNode = node.get("queue-lengths").get("priorities")
             val prios  = mutableListOf<Int>()
-            prioNode?.elements()?.forEach { prios.add( it.asInt()) }
-
-            return Queue(name, prios)
+            node.get("queue-lengths").get("priorities")?.elements()?.forEach { prios.add( it.asInt()) }
+            return Queue(node.get("queue-name").textValue(), prios)
         }
         return Queue()
     }
