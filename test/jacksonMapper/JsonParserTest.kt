@@ -14,9 +14,9 @@ class JsonParserTest {
 
         val parser = JsonParser()
         val result = parser.parseJson(json)
-        val eersteQueue = result.elementAt(0)
-        assertEquals("ipde-input-queue", eersteQueue.name)
-        assertEquals(listOf(3, 3, 3, 12, 10, 8, 6, 4, 2), eersteQueue.priorities)
+        val eersteQueue = result.find { it.name == "ipde-input-queue" }
+        assertEquals("ipde-input-queue", eersteQueue?.name)
+        assertEquals(listOf(3, 3, 3, 12, 10, 8, 6, 4, 2), eersteQueue?.priorities)
 
         val tweedeQueue = result.elementAt(1)
         assertEquals("batch-input-queue", tweedeQueue.name)
