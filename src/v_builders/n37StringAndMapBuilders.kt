@@ -3,6 +3,7 @@ package v_builders
 import util.TODO
 
 fun buildStringExample(): String {
+
     fun buildString(build: StringBuilder.() -> Unit): String {
         val stringBuilder = StringBuilder()
         stringBuilder.build()
@@ -26,11 +27,11 @@ fun todoTask37(): Nothing = TODO(
         building it and returning it as a result.
     """
 )
-fun <K, V> buildMap(build: MutableMap<K, V>.() -> Unit): Map<K, V> {
-    val map = HashMap<K, V>()
-    map.build()
-    return map
-}
+//fun <K, V> buildMap(aap: MutableMap<K, V>.() -> Unit): Map<K, V> {
+//    val map = HashMap<K, V>()
+//    map.aap()
+//    return map
+//}
 
 fun task37(): Map<Int, String> {
     return buildMap {
@@ -40,4 +41,12 @@ fun task37(): Map<Int, String> {
         }
     }
 }
+
+fun buildMap(function: MutableMap<Int, String>.() -> Unit): Map<Int, String> {
+    val map = HashMap<Int, String>()
+    map.function()
+    return map
+}
+
+
 
