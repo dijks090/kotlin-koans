@@ -1,5 +1,6 @@
 package v_builders
 
+import i_introduction._9_Extension_Functions.RationalNumber
 import util.TODO
 import util.doc36
 
@@ -14,8 +15,11 @@ fun todoTask36(): Nothing = TODO(
 )
 
 fun task36(): List<Boolean> {
-    val isEven: Int.() -> Boolean = { todoTask36() }
-    val isOdd: Int.() -> Boolean = { todoTask36() }
+
+    fun Int.isEven(): Boolean { return this % 2 == 0 }
+    val isEven: Int.() -> Boolean = { this % 2 == 0 }
+
+    val isOdd: Int.() -> Boolean = {  this % 2 == 1 }
 
     return listOf(42.isOdd(), 239.isOdd(), 294823098.isEven())
 }
