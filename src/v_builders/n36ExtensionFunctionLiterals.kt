@@ -16,10 +16,14 @@ fun todoTask36(): Nothing = TODO(
 
 fun task36(): List<Boolean> {
 
-    fun Int.isEven(): Boolean { return this % 2 == 0 }
+//    fun Int.isEven(): Boolean { return this % 2 == 0 }
+//    val sum: Int.(aap: Int) -> Int = {  this.plus(aap) }
+
     val isEven: Int.() -> Boolean = { this % 2 == 0 }
 
     val isOdd: Int.() -> Boolean = {  this % 2 == 1 }
+
+//    print (3.sum(5))
 
     return listOf(42.isOdd(), 239.isOdd(), 294823098.isEven())
 }
